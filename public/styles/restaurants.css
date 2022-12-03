@@ -2,6 +2,17 @@ main {
     max-width: 40rem;
 }
 
+main p a {
+    text-decoration: none;
+    color: rgb(139, 100, 8);
+    padding: .15rem .45rem;
+    border-radius: 5%;
+}
+
+main p a:hover {
+    background-color: rgb(245, 222, 173);
+}
+
 #restaurants-list {
     list-style: none;
     margin: 2rem 0;
