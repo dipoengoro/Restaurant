@@ -12,6 +12,10 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({extended: false}));
 
+const filePath = path.join(__dirname, "..", "data", "restaurants.json");
+const fileData = fs.readFileSync(filePath).toString();
+const storedRestaurants = JSON.parse(fileData);
+
 app.get("/about", (req, res) => {
     res.render("about");
 });
@@ -30,16 +34,15 @@ app.get("/recommend", (req, res) => {
 
 app.post("/recommend", (req, res) => {
     const restaurant = req.body;
-    const filePath = path.join(__dirname, "..", "data", "restaurants.json");
-    const fileData = fs.readFileSync(filePath).toString();
-    const storedRestaurants = JSON.parse(fileData);
     storedRestaurants.push(restaurant);
     fs.writeFileSync(filePath, JSON.stringify(storedRestaurants));
     res.redirect("/confirm");
 });
 
 app.get("/restaurants", (req, res) => {
-    res.render("restaurants");
+    res.render("restaurants", {
+        numberOfRestaurant: storedRestaurants.length
+    });
 });
 app.listen(PORT, () => {
     console.log(`Server is running in http://localhost:${PORT}`);

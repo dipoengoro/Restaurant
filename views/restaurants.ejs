@@ -48,6 +48,13 @@
 <main>
     <h1>Recommended restaurants</h1>
     <p>Find your next favorite restaurants with help of our other users!</p>
+    <P>We found <%= numberOfRestaurant %>
+        <% if (numberOfRestaurant <= 1) { %>
+            <span>restaurant</span>
+        <% } else if (numberOfRestaurant > 1) { %>
+           <span>restaurants</span>
+        <% } %>
+    </P>
     <ul id="restaurants-list">
         <li class="restaurant-item">
             <article>
