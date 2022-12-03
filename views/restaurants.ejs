@@ -1,0 +1,25 @@
+<%- include("includes/top"); %>
+<%- include("includes/head", {customStyle: "restaurants"}); %>
+<%- include("includes/header") %>
+<%- include("includes/aside") %>
+<%- include("includes/main"); %>
+<% if (restaurants.length === 0) { %>
+    <p>Unfortunately, we have no recommended restaurants yet, maybe start <a href="/recommend">recommending</a> some?
+    </p>
+<% } else { %>
+    <h1>Recommended restaurants</h1>
+    <p>Find your next favorite restaurants with help of our other users!</p>
+    <P>We found <%= restaurants.length %>
+        <% if (restaurants.length === 1) { %>
+            <span>restaurant.</span>
+        <% } else if (restaurants.length > 1) { %>
+            <span>restaurants.</span>
+        <% } %>
+    </P>
+    <ul id="restaurants-list">
+        <% restaurants.forEach((restaurant) => { %>
+            <%- include("includes/restaurants/restaurant-item", {restaurant: restaurant}); %>
+        <% }); %>
+    </ul>
+<% } %>
+<%- include("includes/bottom"); %>
