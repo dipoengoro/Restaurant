@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Test",
+    "address": "Teststreet 4, Testcity",
+    "cuisine": "Testian",
+    "website": "http://test.test",
+    "description": "Test is testable"
+  },
+  {
+    "name": "Test 2",
+    "address": "Teststreet 4, Testcity 2",
+    "cuisine": "Testian",
+    "website": "http://test2.test",
+    "description": "Test is so testable"
+  }
+]

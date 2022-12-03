@@ -1,10 +1,12 @@
 import * as express from "express";
 import * as process from "process";
 import * as path from "path";
+import * as fs from "fs";
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.static("public"));
+app.use(express.urlencoded({extended: false}))
 
 app.get("/about", (req, res) => {
     const htmlFilePath = path.join(__dirname, "../views", "about.html");
@@ -24,6 +26,16 @@ app.get("/", (req, res) => {
 app.get("/recommend", (req, res) => {
     const htmlFilePath = path.join(__dirname, "../views", "recommend.html");
     res.sendFile(htmlFilePath);
+});
+
+app.post("/recommend", (req, res) => {
+    const restaurant = req.body;
+    const filePath = path.join(__dirname, "..", "data", "restaurants.json");
+    const fileData = fs.readFileSync(filePath).toString();
+    const storedRestaurants = JSON.parse(fileData);
+    storedRestaurants.push(restaurant);
+    fs.writeFileSync(filePath, JSON.stringify(storedRestaurants));
+    res.redirect("/confirm");
 });
 
 app.get("/restaurants", (req, res) => {
