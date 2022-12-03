@@ -47,6 +47,7 @@ app.post("/recommend", (req, res) => {
 app.get("/restaurants", async (req, res) => {
     res.render("restaurants", {restaurants: storedRestaurants});
 });
+
 app.listen(PORT, () => {
     console.log(`Server is running in http://localhost:${PORT}`);
 });
