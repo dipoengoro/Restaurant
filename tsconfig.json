@@ -1,16 +1,11 @@
-{
+{ "compileOnSave": true,
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "CommonJS",
-    "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": false
   },
-  "include": [
-    "*.ts",
-  ],
   "exclude": [
     "node_modules",
     ".gitignore",
     ".idea"
-  ]
+  ],
+  "strict": true
 }

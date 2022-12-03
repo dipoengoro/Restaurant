@@ -20,12 +20,17 @@ app.get("/about", (req, res) => {
     res.render("about");
 });
 
-app.get("/confirm", (req, res) => {
+app.get("/confirm", (_, res) => {
     res.render("confirm");
 });
 
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("index", {
+        listBoarding: new Map<string, string>([
+            ["restaurants", "Browse Shared Restaurants"],
+            ["recommend", "Share Your Favorite Restaurant"]
+        ])
+    });
 });
 
 app.get("/recommend", (req, res) => {
@@ -39,7 +44,7 @@ app.post("/recommend", (req, res) => {
     res.redirect("/confirm");
 });
 
-app.get("/restaurants", (req, res) => {
+app.get("/restaurants", async (req, res) => {
     res.render("restaurants", {restaurants: storedRestaurants});
 });
 app.listen(PORT, () => {
